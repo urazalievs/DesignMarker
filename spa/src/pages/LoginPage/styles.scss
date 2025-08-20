@@ -1,0 +1,13 @@
+.login_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    .auth_window{
+        width: 60em;
+        height: 40em;
+        border-radius: 1em;
+        background: white;
+        box-shadow: 2px 2px 10px #a3a3a3;
+    }
+}
