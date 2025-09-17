@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('category_id')->constrained();
-            $table->integer('price');
+            $table->integer('price')->comment('price of product is stored in sum (not tiyn )');
             $table->text('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

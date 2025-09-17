@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\LaravelPackageTools\Concerns\Package\HasTranslations;
 
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, SoftDeletes;
 
     public $filable = [
         'name',
@@ -36,6 +37,12 @@ class Product extends Model
     public function stocks(): HasMany
     {
         return $this->hasMany(Stock::class);
+    }
+
+    public function withStock($stockId)
+    {
+        $this->stocks = [$this->stocks()->findorFail($stockId)];
+        return $this;
     }
 
     public function users(): BelongsToMany

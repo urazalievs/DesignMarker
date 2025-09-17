@@ -8,21 +8,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
-class Category extends Model
+class PaymentType extends Model
 {
-    /** @use HasFactory<\Database\Factories\CategoryFactory> */
+    /** @use HasFactory<\Database\Factories\PaymentTypeFactory> */
     use HasFactory, HasTranslations, SoftDeletes;
 
     protected $fillable = [
-        'name',
-        'icon',
-        'order',
+        'name'
     ];
 
     public array $translatable = ['name'];
 
-    public function products(): HasMany
+    public function order(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Order::class);
     }
 }
