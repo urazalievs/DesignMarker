@@ -19,8 +19,16 @@ class UserSeeder extends Seeder
             'phone' => '+998999999999',
             'password' => Hash::make('web12345'),
         ]);
-
         $admin->roles()->attach(1);
+
+        $admin = User::create([
+            'first_name' => 'Samar',
+            'last_name' => 'Adilov',
+            'email' => 'samaradilov@gmail.com',
+            'phone' => '+99899999999',
+            'password' => Hash::make('web12345'),
+        ]);
+        $admin->roles()->attach(2);
 
         User::factory()
         ->count(10)

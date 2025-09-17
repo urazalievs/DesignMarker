@@ -64,6 +64,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserAddress::class);
     }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
     public function hasFavorite($favorite_id): bool
     {
         return $this->favorites()->where('product_id', $favorite_id)->exists();

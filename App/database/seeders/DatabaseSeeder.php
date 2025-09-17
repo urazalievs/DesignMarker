@@ -1,7 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use Faker\Provider\ar_EG\Address;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,7 +17,8 @@ class DatabaseSeeder extends Seeder
             ValueSeeder::class,
             ProductSeeder::class,
             DeliveryMethodsSeeder::class,
-            PaymentTypeSeeder::class
+            PaymentTypeSeeder::class,
+            UserAddressSeeder::class,
         ]);
 
     }

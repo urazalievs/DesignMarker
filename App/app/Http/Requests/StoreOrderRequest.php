@@ -16,7 +16,7 @@ class StoreOrderRequest extends FormRequest
         return [
             'delivery_method_id' => 'required|numeric',
             'payment_type_id' => 'required|',
-            'products' =>'required|array:product_id, stock_id, quantity',
+            'products' =>'required',
             'products.*.product_id' => 'required|numeric',
             'products.*.quantity' => 'required|numeric',
             'products.*.stock_id' => 'required|numeric',
