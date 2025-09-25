@@ -15,7 +15,10 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return auth()->user()->orders;
+        if (request()->has('status_id')){
+            return $this->response(OrderResource::collection(auth()->user()->orders()->where('status_id', request('status_id'))->paginate(10))->toArray(request()));
+        }
+        return $this->response(OrderResource::collection(auth()->user()->orders()->paginate(10))->toArray(request()));
     }
     public function create()
     {
@@ -56,6 +59,7 @@ class OrderController extends Controller
                 'delivery_method_id' => $request->delivery_method_id,
                 'payment_type_id' => $request->payment_type_id,
                 'sum' => $sum,
+                'status_id' => in_array($request['payment_type_id'], [1, 2]) ? 1 : 6,
                 'address' => $address,
                 'products' => $products,
             ]);
@@ -67,17 +71,16 @@ class OrderController extends Controller
                     $stock->save();
                 };
             }
-            return 'succes';
+            return $this->success('Great!!!!',['order' => new OrderResource($order)]);
         } else {
-            return response([
-                'message' => 'Some products are not available in the requested quantity',
-                'notAvailableProducts' => $notFoundProducts
-            ]);
+            return $this->error(
+                'Some products are not available in the requested quantity',
+                ['notAvailableProducts' => $notFoundProducts]);
         }
     }
     public function show(Order $order)
     {
-        return new OrderResource($order);
+        return $this->response([new OrderResource($order)]);
     }
     public function edit(Order $order)
     {

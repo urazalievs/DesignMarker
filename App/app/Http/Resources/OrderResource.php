@@ -18,6 +18,7 @@ class OrderResource extends JsonResource
             'id' => $this->id,
             'comment' => $this->comment,
             'sum' => $this->sum,
+            'status' => $this->status,
             'user' => $this->user,
             'products' => $this->products,
             'address' => $this->address,

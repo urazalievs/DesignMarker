@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Faker\Provider\ar_EG\Address;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +18,8 @@ class DatabaseSeeder extends Seeder
             DeliveryMethodsSeeder::class,
             PaymentTypeSeeder::class,
             UserAddressSeeder::class,
+            StatusSeeder::class,
+            SettingSeeder::class,
         ]);
 
     }

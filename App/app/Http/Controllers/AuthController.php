@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -20,9 +21,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return response()->json([
-            'token' => $user->createToken('auth_token')->plainTextToken,
-        ]);
+        return $this->success('' ,['token' => $user->createToken('auth_token')->plainTextToken]);
     }
 
     public function register(Request $request)
@@ -34,9 +33,13 @@ class AuthController extends Controller
     {
         // Logic for user logout
     }
+    public function changePassword(Request $request)
+    {
+        
+    }
 
     public function user(Request $request)
     {
-        return $request->user();
+        return $this->response([new UserResource($request->user())]);
     }
 }

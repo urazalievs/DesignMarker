@@ -18,6 +18,7 @@ class Order extends Model
         'delivery_method_id',
         'payment_type_id',
         'products',
+        'status_id',
         'address',
     ];
 
@@ -39,5 +40,10 @@ class Order extends Model
     public function deliveryMethod(): BelongsTo
     {
         return $this->belongsTo(DeliveryMethods::class);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
     }
 }
